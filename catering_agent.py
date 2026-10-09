@@ -400,9 +400,17 @@ st.markdown("""
       font-size: 14px;
   }
   .stButton button:hover { border-color: #E8531A; color: #E8531A; background: #FFF4EA; }
+  /* Keep the message box light even when the visitor's browser is in dark mode */
+  [data-testid="stChatInput"] div { background-color: transparent !important; }
   [data-testid="stChatInput"] textarea {
-      background: #fff !important; color: #2B2118 !important; font-size: 15px !important;
+      background: transparent !important; color: #2B2118 !important; caret-color: #E8531A;
+      font-size: 15px !important;
   }
+  [data-testid="stChatInput"] textarea::placeholder { color: #9A8C80 !important; opacity: 1; }
+  [data-testid="stChatInput"] button { background: transparent !important; color: #E8531A !important; }
+  [data-testid="stChatInput"] button svg { fill: #E8531A !important; }
+  [data-testid="stAlert"] { background: #FFF1E6 !important; border-radius: 14px; }
+  [data-testid="stAlert"] p { color: #6B3A12 !important; }
   [data-testid="stChatInput"] { border: 1px solid #F1C9A6 !important; border-radius: 999px !important; background: #fff !important; box-shadow: 0 2px 12px rgba(80,40,10,.08); }
 
   [data-testid="stExpander"] details {
