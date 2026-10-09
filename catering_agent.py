@@ -383,8 +383,16 @@ st.markdown("""
   .p-card b { display: block; font-size: 16px; font-weight: 600; color: #2B2118; }
   .p-card span { display: block; font-size: 14px; color: #7A6A5C; margin-top: 3px; line-height: 1.4; }
   @media (max-width: 640px) {
-      .p-cards { grid-template-columns: 1fr; }
-      .p-hero { padding: 110px 24px 28px; } .p-hero h1 { font-size: 2rem; }
+      /* Phones: photos become one swipeable row so the chat stays near the top */
+      .p-cards { display: flex; overflow-x: auto; gap: 12px; margin: 18px 0 4px;
+                 scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+      .p-cards::-webkit-scrollbar { display: none; }
+      .p-card { flex: 0 0 64%; scroll-snap-align: start; }
+      .p-card .img { height: 120px; border-radius: 18px; }
+      .p-card span { display: none; }
+      .p-hero { padding: 70px 22px 24px; border-radius: 22px; } .p-hero h1 { font-size: 1.9rem; }
+      .p-hero p { font-size: 1rem; }
+      .p-heading { margin-top: 24px; }
       .p-nav span.links { display: none; }
   }
 
@@ -417,9 +425,17 @@ st.markdown("""
       background: transparent; border: none !important; border-bottom: 1px solid #EEDCCB !important;
       border-radius: 0;
   }
-  [data-testid="stExpander"] summary, [data-testid="stExpander"] summary p { color: #2B2118 !important; font-weight: 600; }
+  [data-testid="stExpander"] summary { padding: 16px 4px !important; }
+  [data-testid="stExpander"] summary, [data-testid="stExpander"] summary p {
+      color: #5B4636 !important; font-size: 1.08rem !important; font-weight: 500 !important; line-height: 1.4;
+  }
   [data-testid="stExpander"] summary:hover, [data-testid="stExpander"] summary:hover p { color: #E8531A !important; }
-  [data-testid="stExpander"] summary svg { fill: #E8531A; }
+  [data-testid="stExpander"] summary svg { fill: #E8531A; color: #E8531A; }
+  [data-testid="stExpanderDetails"] { padding: 0 4px 18px 30px !important; }
+  [data-testid="stExpanderDetails"] p, [data-testid="stExpanderDetails"] li {
+      color: #7A6657 !important; font-size: 1.02rem !important; line-height: 1.65;
+  }
+  [data-testid="stExpanderDetails"] strong { color: #5B4636; font-weight: 600; }
 
   .p-note { background: #FFF1E6; border: none; border-radius: 14px; padding: 10px 14px; color: #6B3A12; }
 
