@@ -48,12 +48,12 @@ _U = "https://images.unsplash.com/photo-{}?auto=format&fit=crop&w={}&q=70"
 HERO_PHOTO = _U.format("1555244162-803834f70033", 1600)        # buffet table (Saile Ilyas)
 PHOTO_CARDS = [
     # (photo, title, caption)
-    (_U.format("1600565193348-f74bd3c7ccdf", 700), "Chef-led kitchens",
-     "Menus built and cooked by our own chefs."),               # chef cooking (Johnathan Macedo)
+    (_U.format("1600565193348-f74bd3c7ccdf", 700), "Top local caterers",
+     "Menus from vetted restaurants and caterers near you."),               # chef cooking (Johnathan Macedo)
     (_U.format("1576842546422-60562b9242ae", 700), "Events of any size",
-     "From a team lunch to a 500-guest gala."),                 # food on a table (Yukiko Kanada)
-    (_U.format("1577106263724-2c8e03bfe9cf", 700), "Plated with care",
-     "Dietary needs and allergens handled properly."),          # plating food (Sebastian Coman)
+     "One order, from a team lunch to a 500-guest gala."),                 # food on a table (Yukiko Kanada)
+    (_U.format("1577106263724-2c8e03bfe9cf", 700), "Every diet covered",
+     "Partners matched to your dietary and allergen needs."),          # plating food (Sebastian Coman)
 ]
 
 # FAQs shown on the landing page. Each entry is (question, answer).
