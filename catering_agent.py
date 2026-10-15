@@ -345,6 +345,7 @@ def classify(text: str, current: str) -> str | None:
         ])
         answer, in_tok, out_tok = extract_text(data)
         st.session_state["ca_router_err"] = ""
+        st.session_state["ca_router_last"] = answer[:300]
     except Exception as e:
         body = getattr(e, "body", "")
         st.session_state["ca_router_err"] = f"{type(e).__name__}: {e} {body[:200]}"
@@ -679,7 +680,11 @@ if user_input and all_ready:
             turns.append({"role": "assistant", "kind": "driver_roster", "text": DRIVER_ROSTER_REPLY})
         elif dept_name is None:
             user_turn["send"] = False
-            turns.append({"role": "assistant", "kind": "offtopic", "text": OFFTOPIC_REPLY})
+            dbg = ""
+            if st.secrets.get("DEBUG_CLAIMS", False):
+                raw = st.session_state.get("ca_router_last", "").replace("`", "'")
+                dbg = f"\n\n*debug, front desk answered:* `{raw}`"
+            turns.append({"role": "assistant", "kind": "offtopic", "text": OFFTOPIC_REPLY + dbg})
         else:
             dept = DEPARTMENTS[dept_name]
             st.session_state.ca_department = dept_name
