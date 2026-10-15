@@ -82,6 +82,11 @@ FAQS = [
      "Business accounts get consolidated monthly invoicing and a dedicated catering contact."),
 ]
 
+# When True, the front desk stops messages it judges unrelated to Pronto and
+# replies with OFFTOPIC_REPLY (they never reach the gateway). When False, every
+# message is passed on to a department's model, so the gateway policies see it.
+BLOCK_OFFTOPIC = False
+
 # Reply when a request has nothing to do with Pronto.
 OFFTOPIC_REPLY = (
     "That's outside what I can help with here. I can help with Pronto catering, "
@@ -354,7 +359,7 @@ def classify(text: str, current: str) -> str | None:
     norm = _norm(answer)
     if "driverroster" in norm:
         return DRIVER_ROSTER
-    if "offtopic" in norm:
+    if "offtopic" in norm and BLOCK_OFFTOPIC:
         return None
     # Longest names first, so "Catering Accounts" isn't mistaken for "Catering".
     for name in sorted(DEPARTMENTS, key=len, reverse=True):
